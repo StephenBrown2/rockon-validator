@@ -15,6 +15,8 @@ import (
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 	"github.com/lmittmann/tint"
+
+	"github.com/StephenBrown2/rockon-validator/model"
 )
 
 const usage = `Usage:
@@ -104,7 +106,7 @@ func setupLogger(logLevel *slog.LevelVar) *slog.Logger {
 	return logger
 }
 
-func checkRootMap(rootMap map[string]string, filename string, rockon RockOn) {
+func checkRootMap(rootMap map[string]string, filename string, rockon model.RockOn) {
 	var found bool
 	var foundName string
 	for k := range rootMap {
@@ -166,7 +168,7 @@ func main() {
 		json.Unmarshal(rootData, &rootMap)
 		logger.Debug("root.json flags", slog.String("rootFlag", rootFlag), slog.String("rootFile", rootFile))
 
-		var rockon RockOn
+		var rockon model.RockOn
 		err = json.Unmarshal(data, &rockon)
 		if err != nil {
 			err1 := json.Unmarshal(data, &rootMap)
