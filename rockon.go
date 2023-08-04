@@ -56,8 +56,8 @@ func (r RockonDetails) MarshalJSON() ([]byte, error) {
 type Container struct {
 	Image        string                    `json:"image"`                   // docker image. eg: linuxserver/plex
 	Tag          string                    `json:"tag,omitempty"`           // tag of the docker image, if any. latest is used by default.
-	LaunchOrder  UintValue                 `json:"launch_order"`            // 1 or above. If there are multiple containers and they must be started in order, specify here.
-	Ports        map[string]Port           `json:"ports"`                   // Map of (container) port numbers to Port objects, mapping the container port to the host
+	LaunchOrder  UintValue                 `json:"launch_order,omitempty"`  // 1 or above. If there are multiple containers and they must be started in order, specify here.
+	Ports        map[string]Port           `json:"ports,omitempty"`         // Map of (container) port numbers to Port objects, mapping the container port to the host
 	Volumes      map[string]Volume         `json:"volumes,omitempty"`       // Map of container mount points to Volume objects, representing Shares to be mounted in the container
 	Opts         []Option                  `json:"opts,omitempty"`          // Array of Option objects that represent container options such as --net=host etc.
 	CmdArguments []CmdArgument             `json:"cmd_arguments,omitempty"` // Array of CmdArgument objects that represent arguments to pass to the 'docker run' command.
